@@ -1,0 +1,3 @@
+Installation:      http://code.google.com/p/phantomjs/wiki/Installation
+Usage:             `phantomjs coucou.js`
+Test Jasmine:      `phantomjs /path/to/phantomjs/examples/run-jasmine.js http://localhost:8080/coucou-jasmine.html`

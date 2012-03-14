@@ -1,0 +1,2 @@
+Installation:     http://casperjs.org/#installation (dépend de PhantomJS 1.4)
+Usage:            `casperjs coucou.js`

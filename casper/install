@@ -1,3 +1,0 @@
-→ http://casperjs.org/#installation
-
-export PHANTOMJS_EXECUTABLE=$(realpath ./phantomjs)
