@@ -1,0 +1,87 @@
+<html>
+<head>
+	<title>Tests</title>
+	<link rel="stylesheet" href="red.css" id="style"></link>
+
+	<link rel="stylesheet" type="text/css" href="jasmine-standalone-1.1.0.rc1/lib/jasmine-1.1.0.rc1/jasmine.css">
+	<script type="text/javascript" src="jasmine-standalone-1.1.0.rc1/lib/jasmine-1.1.0.rc1/jasmine.js"></script>
+	<script type="text/javascript" src="jasmine-standalone-1.1.0.rc1/lib/jasmine-1.1.0.rc1/jasmine-html.js"></script>
+	<script>
+	describe("Timers", function() {
+		it("should change title and content on load", function () {
+			runs(function () {
+				expect(page.document.title).toEqual('COUCOU TOTO');
+				expect(page.document.querySelector('#coucou').innerText).toEqual('toto');
+			});
+			waits(2500);
+			runs(function () {
+				expect(page.document.title).toEqual('COUCOU GAMIN');
+				expect(page.document.querySelector('#coucou').innerText).toEqual('gamin');
+			});
+		});
+	});
+	describe("Button", function () {
+		it("should change content on click", function () {
+			page.document.getElementById('btn').click();
+			runs(function () { expect(page.document.querySelector('#coucou').innerText).toEqual('poney'); });
+			waits(1500);
+			runs(function () { expect(page.document.querySelector('#coucou').innerText).toEqual('gamin'); });
+		});
+	});
+	describe("CSS", function () {
+		it("should have loaded red.css", function () {
+			expect(page.document.querySelector('#style').href.replace(/^.*\//, '')).toEqual('red.css');
+		});
+		var link = function () {
+			var as = page.document.querySelectorAll('a');
+			for (var i=0; i<as.length; i++) {
+				if (as[i].innerHTML == 'Change color') {
+					return as[i];
+				}
+			}
+		};
+		it("should have a link with expected label", function () {
+			expect(link()).toBeTruthy();
+		});
+		describe("Link", function () {
+			it("should load blue.css", function () {
+				link().onclick();
+				expect(page.document.querySelector('#style').href.replace(/^.*\//, '')).toEqual('blue.css');
+			});
+		});
+	});
+	</script>
+
+	<script type="text/javascript">
+	(function() {
+		var jasmineEnv = jasmine.getEnv();
+		jasmineEnv.updateInterval = 100;
+
+		var trivialReporter = new jasmine.TrivialReporter();
+
+		jasmineEnv.addReporter(trivialReporter);
+
+		jasmineEnv.specFilter = function(spec) {
+			return trivialReporter.specFilter(spec);
+		};
+
+		var currentWindowOnload = window.onload;
+
+		window.onload = function() {
+			if (currentWindowOnload) {
+				currentWindowOnload();
+			}
+			execJasmine();
+		};
+
+		function execJasmine() {
+			jasmineEnv.execute();
+		}
+
+	})();
+	</script>
+
+</head>
+<body>
+	<iframe name="page" src="coucou.html" width="100%"></iframe>
+</body>

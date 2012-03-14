@@ -1,0 +1,17 @@
+→ http://code.google.com/p/phantomjs/wiki/Installation
+
+
+sudo apt-get install libqt4-dev libqtwebkit-dev qt4-qmake
+git clone git://github.com/ariya/phantomjs.git && cd phantomjs
+git checkout 1.4
+qmake-qt4 && make
+
+
+→→ ./phantomjs/bin/phantomjs coucou.js
+
+
+
+
+
+
+→ http://code.google.com/p/phantomjs/wiki/TestFrameworkIntegration

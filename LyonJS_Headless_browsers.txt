@@ -1,0 +1,388 @@
+
+Headless browsers
+
+No head
+
+No pain
+
+Who ?
+
+Nicolas Chambrier
+
+Twitter:     @naholyr
+Blog:        http://naholyr.fr
+Mail:        naholyr@gmail.com
+
+
+Consultant chez Clever Age
+Une SSII qu'elle est bien :)
+
+
+Bientôt développeur chez Dijiwan avec @DavidBruant et @oncletom pour faire du Node.JS (entre autres)
+
+What ? Why ?
+
+Quoi ?
+
+
+
+
+Un "vrai" navigateur, mais sans fenêtre
+
+Exécute le JS, gère les intéractions...
+
+
+
+
+
+
+
+Pourquoi ?
+
+
+
+
+Automatiser certaines tâches:
+
+Copie d'écran ?
+
+Tests fonctionnels
+
+Autres (robots)
+
+Présentation
+
+Les forces en présence
+
+Zombie.js
+
+Module Node.JS
+
+Navigateur "headless" "full-stack"
+
+Moteur WebKit ? NON ! → implémentation maison !
+
+API d'intéraction simplifiée
+
+PhantomJS
+
+Application standalone
+
+Navigateur "headless" "full-stack"
+
+Moteur WebKit + JavaScriptCore
+
+Note: Effectue réellement le rendu
+
+CasperJS
+
+Surcouche de
+PhantomJS:
+
+API simplifiée
+
+Ajout d'une API de
+test
+
+
+
+
+Des alternatives ?
+
+Oui, comme XBrowser (.Net), sans doute plein d'autres...
+
+
+
+
+Tests
+
+Fight!
+
+La page à tester
+
+Une page moisie avec:
+
+Des couleurs qui changent sur un setTimeout
+
+Un bouton (qui fait des trucs) pas dans un formulaire
+
+Un lien (qui fait d'autres trucs)
+
+Des scripts en inline bien dégueulasses
+
+
+Des tests côté client avec Jasmine
+
+Zombie.js
+
+Exemples de tests:
+
+
+
+
+
+
+
+Note: pas de rendu de la page!
+
+
+
+
+
+
+
+
+
+
+
+
+
+Attention à setTimeout!
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pourquoi ? Parce qu'il n'y a pas un "vrai navigateur" qui tourne derrière.
+
+PhantomJS
+
+Bordel! Où est assert ???
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ATTENTION: exception = blocage silencieux!
+
+
+
+
+Pourquoi ? On n'appelle jamais phantom.exit(), par contre pourquoi rien n'est affiché ? Aucune idée :(
+
+PhantomJS
+
+Utilisation de setTimeout OK (on termine avec phantom.exit):
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lui fait le rendu "réel":
+
+
+
+
+
+
+
+
+
+
+Note: attention au scope!
+
+Le callback dans evaluate()
+s'exécute dans un autre contexte
+
+
+
+
+Attention à "document" dans le contexte global: ce n'est pas votre ami !
+
+CasperJS
+
+Phantom, en mieux :)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Attention à setTimeout! Utiliser Casper#wait()
+
+Cause: il s'arrête seul après Casper#run().
+
+Conclusion
+
+Kill 'em all !
+
+Zombie.js
+
+Pour:
+
+
+
+
+Léger et rapide
+
+Module Node.JS
+= tout l'écosystème Node.JS
+= n'importe quel lib de test Node (et il y en a baucoup!)
+
+Contexte d'exécution plus simple à prendre en main
+
+
+
+
+
+
+
+Contre:
+
+
+
+
+Ne calcule pas les styles CSS
+
+Globalement moins fiable car pas de vrai "browser" qui tourne derrière.
+
+PhantomJS
+
+Pour:
+
+
+
+
+Plus complet & plus fiable que Zombie.js
+
+Calcule réellement le rendu de la page
+
+
+
+
+
+
+
+Contre:
+
+
+
+
+Difficile à installer (on n'est pas des manchots non plus)
+
+Peut être plus complexe à maîtriser
+
+Aucune API de test :(
+
+
+
+
+CasperJS
+
+Pour:
+
+
+
+
+Tous les avantages de PhantomJS!
+
+API de test plus complète
+
+API vachement trop plus mieux de manière générale
+
+Maintenu par @n1k0 (mon idole) 
+
+
+
+
+
+
+
+Contre:
+
+
+
+
+Encore plus difficile à installer: dépendance à Python + PhantomJS
+
+
+
+
+Mon avis
+
+
+
+
+Zombie pour des tests simples.
+
+S'il suffit, c'est le meilleur choix pour ses faibles dépendances.
+
+
+
+
+Casper pour des besoins plus avancés
+(= besoin du rendu).
+
+Phantom seul est vraiment vite désagréable à utiliser.
+
+Goodbye
+
+Questions ?
+

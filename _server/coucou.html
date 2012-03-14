@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>COUCOU TOTO</title>
+	<link rel="stylesheet" href="red.css" id="style"></link>
+</head>
+<body>
+	<!-- Base timers -->
+	Coucou <span id="coucou">toto</span> !
+	<script type="text/javascript">
+	function timers() {
+		setTimeout(function () { document.getElementById('coucou').innerHTML = 'gamin'; }, 1500);
+		setTimeout(function () { document.title = 'COUCOU GAMIN'; }, 500);
+	}
+	setTimeout(timers, 500);
+	</script>
+
+	<!-- Button -->
+	<button id="btn">Some button</button>
+	<script>
+		document.getElementById('btn').onclick = function () {
+			document.title = 'BISOUS';
+			timers();
+			document.getElementById('coucou').innerHTML = 'poney';
+		};
+	</script>
+
+	<!-- Play with CSS -->
+	<a href="#" onclick="change_color(); return false;">Change color</a>
+	<script>
+	function getTextColor(e) {
+		return window.getComputedStyle(e, null).color;
+	}
+	function change_color() {
+		var css = document.getElementById('style').href.replace(/^.*\//, '') == 'red.css' ? 'blue.css' : 'red.css';
+		console.log('Loading CSS', css, 'current color:', getTextColor(document.getElementById('coucou')));
+		document.getElementById('style').href = css;
+		setTimeout(function () {
+			console.log('Loaded CSS', css, 'current color:', getTextColor(document.getElementById('coucou')));
+		}, 200);
+	}
+	</script>
+</body>
